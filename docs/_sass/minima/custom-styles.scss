@@ -1,0 +1,40 @@
+// Placeholder to allow defining custom styles that override everything else.
+// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+
+// ----- LIST
+ul li + li,
+ol li + li {
+  margin-top: 0.25em;
+}
+
+// ----- TEXT
+.line-through {
+  text-decoration-line: line-through;
+}
+
+// ----- Elements
+// ---------- FIELDS
+.required::after {
+    content: "*";
+    color: $color-danger;
+}
+
+// ---------- FOOTER
+.footer-col {
+  text-align: center;
+}
+
+// ----- Others
+// ---------- COLORS
+.text-danger {
+  color: $color-danger;
+}
+.text-info {
+  color: $color-info;
+}
+.text-success {
+  color: $color-success;
+}
+.text-warning {
+  color: $color-warning;
+}
