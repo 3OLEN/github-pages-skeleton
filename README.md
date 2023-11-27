@@ -1,6 +1,6 @@
 # 3OLEN - GitHub Pages Skeleton
 
-Modèle de base pour l'utilisation de GitHub Pages dans le cadre de sujets pour les 
+Modèle de base pour l'utilisation de GitHub Pages dans le cadre de sujets pour les
 <abbr title="ORT LYON Enseignement Numérique">3OLEN</abbr>.
 
 ## 📦️ Composants
@@ -24,14 +24,42 @@ Modèle de base pour l'utilisation de GitHub Pages dans le cadre de sujets pour 
 Puisque les sources sont copiées, il est nécessaire d'adapter les différents fichiers pour la cohérence avec le nouveau
 projet.
 
+### 🐋 Docker
+
+Tout ce qui se trouve dans les dossiers `bin/dev` et `docker` est lié à l'utilisation de docker afin de définir le
+site en local et pouvoir le concevoir et le tester sans avoir besoin d'installer l'environnement GitHub Pages sur la
+machine ni de le déployer à chaque modification sur GitHub.
+
+#### « J'utilise Docker. »
+
+Si vous comptez utiliser Docker, il est nécessaire de modifier le fichier [_parameters](bin/dev/_parameters) et les
+variables :
+- `DOCKER_IMAGE_NAME` : Nom de l'image Docker ; à modifier selon le nom du projet.
+- `DOCKER_CONTAINER_NAME` : Nom du container Docker ; n'est peut-être pas à modifier.
+
+Le détail de l'utilisation de Docker est défini à la section [Scripts Docker](#-scripts-utiles).
+
+#### « Je n'utilise pas Docker. »
+
+Si vous ne comptez pas utiliser Docker, vous pouvez supprimer ces dossiers.
+
+Pour tester le site en local sans utiliser Docker, il sera nécessaire d'installer :
+- [Ruby](https://www.ruby-lang.org/fr/) [>=2.5.0]
+- [RubyGems](https://rubygems.org/)
+- [Bundler](https://bundler.io/) (version 2.0 ou supérieure).
+
+Puis d'exécuter les mêmes commandes que celles définies dans le fichier [entrypoint](docker/jekyll/entrypoint).
+
+Source : [GitHub Pages - Testing your GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll)
+
 ### 📝 README.md
 
 L'ensemble du contenu du fichier `README.md` est à supprimer et à réécrire selon le nouveau projet.
 
 ### 🔧 Configuration
 
-La configuration de Jekyll se trouve dans le fichier [_config.yaml](docs/_config.yaml) ; deux variables sont à 
-modifier : 
+La configuration de Jekyll se trouve dans le fichier [_config.yaml](docs/_config.yaml) ; deux variables sont à
+modifier :
 - `title` : titre du site/projet ; est utilisée dans le `<title>` HTML.
 - `description` : description du site/projet.
 
@@ -41,6 +69,21 @@ La page d'accueil ([index.html](docs/index.html)) reprend seulement la descripti
 modifier avant le commit initial ou le faire plus tard.
 
 # Description et utilisation du modèle
+
+## 💻️ Développement local
+
+Les informations concernant le développement local (avec ou sans Docker) sont définies [plus haut](#-docker).
+
+### 🔨 Scripts utiles
+
+- `bin/dev/start`
+  - Initialise l'environnement Docker en créant l'image utilisée par le container.
+  - Crée un container en "one-shot" en se basant sur le `entrypoint`.
+- `bin/dev/build`
+  - Exécute la commande `jekyll build` (par le biais de `bundler`) dans le container Docker.
+  - Il est parfois nécessaire de forcer un *build* pour que les modifications soient prises en compte, notamment sur
+    la config, le style ou encore le templating dynamique.
+
 
 ## 🧱 Contenu du site
 

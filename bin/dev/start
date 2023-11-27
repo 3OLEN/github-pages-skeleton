@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -eu
+
+export ROOT_PATH="$(realpath "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/../..")"
+source "$ROOT_PATH/bin/dev/_parameters"
+
+readonly containers=$(docker ps -q --filter name="${DOCKER_CONTAINER_NAME}")
+if [ "${containers}" != "" ]; then
+  echo "Stopping running container(s) \"${DOCKER_CONTAINER_NAME}\"..."
+  docker stop ${containers}
+fi
+
+echo "Building image \"${DOCKER_IMAGE_NAME}\"..."
+docker \
+  build \
+    --file "${ROOT_PATH}/docker/jekyll/Dockerfile" \
+    --tag "${DOCKER_IMAGE_NAME}":latest \
+    "${ROOT_PATH}"
+
+echo "Running container \"${DOCKER_CONTAINER_NAME}\"..."
+docker \
+  run \
+    --rm \
+    --interactive \
+    --tty \
+    --detach \
+    --volume "${ROOT_PATH}/docs":/app/docs \
+    --volume "${ROOT_PATH}/docker/jekyll/entrypoint":/tmp/entrypoint \
+    --name "${DOCKER_CONTAINER_NAME}" \
+    --publish 4000:4000 \
+    --workdir /app/docs \
+    --entrypoint /tmp/entrypoint \
+    ${DOCKER_IMAGE_NAME}

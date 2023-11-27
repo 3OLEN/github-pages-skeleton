@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -eu
+
+export ROOT_PATH="$(realpath "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/../..")"
+source "$ROOT_PATH/bin/dev/_parameters"
+
+echo "Force site build on container \"$DOCKER_CONTAINER_NAME\"..."
+docker exec \
+  --interactive \
+  --tty \
+  "$DOCKER_CONTAINER_NAME" \
+  bundle exec jekyll build --trace
