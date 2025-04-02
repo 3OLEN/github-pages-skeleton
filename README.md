@@ -8,7 +8,7 @@ Modèle de base pour l'utilisation de GitHub Pages dans le cadre de sujets pour 
 - Utilisation des dépendances supportées par [GitHub Pages](https://pages.github.com/versions/).
   - [Jekyll](https://jekyllrb.com/) v3.9<br>
     *Pour utiliser une version plus récente, il est nécessaire de définir une `GitHub Action` spécifique.*
-  - [Minima](https://github.com/jekyll/minima) v2.5 (thème `dark`)
+  - [Minima](https://github.com/jekyll/minima) v2.5 (thème `light` + `dark` ; choix utilisateur via "footer")
 
 # 📤️ Récupération du modèle
 

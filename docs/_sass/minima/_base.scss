@@ -210,6 +210,11 @@ pre {
     padding-right: $spacing-unit;
     padding-left: $spacing-unit;
   }
+  @media screen and (min-width: $content-width) {
+    &.full {
+      max-width: 80%;
+    }
+  }
 }
 
 

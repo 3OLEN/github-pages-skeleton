@@ -1,6 +1,24 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
+// ----- GRID
+@for $coef from 1 through 6 {
+  %grid-cols-#{$coef} {
+    display: grid;
+    grid-template-columns: repeat(#{$coef}, minmax(0, 1fr));
+  }
+  .grid-cols-#{$coef} {
+    @extend %grid-cols-#{$coef};
+  }
+
+  %col-span-#{$coef} {
+    grid-column: span #{$coef} / span #{$coef};
+  }
+  .col-span-#{$coef} {
+    @extend %col-span-#{$coef};
+  }
+}
+
 // ----- LIST
 ul li + li,
 ol li + li {
@@ -15,8 +33,8 @@ ol li + li {
 // ----- Elements
 // ---------- FIELDS
 .required::after {
-    content: "*";
-    color: $color-danger;
+  content: "*";
+  color: $color-danger;
 }
 
 // ---------- FOOTER
@@ -29,12 +47,18 @@ ol li + li {
 .text-danger {
   color: $color-danger;
 }
-.text-info {
-  color: $color-info;
+
+@mixin text-black {
+  color: #000;
 }
-.text-success {
-  color: $color-success;
+@mixin text-white {
+  color: #FFF;
 }
-.text-warning {
-  color: $color-warning;
+.text-black {
+  @include text-black;
 }
+.text-white {
+  @include text-white;
+}
+
+@import "custom-templates";
