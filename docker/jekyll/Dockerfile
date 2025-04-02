@@ -4,6 +4,7 @@ RUN apt-get update  \
     && apt-get install -y \
         gcc \
         g++ \
-        make
+        make \
+    && apt-get clean
 
-RUN gem install bundler
+RUN gem install minima jekyll bundler

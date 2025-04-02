@@ -13,4 +13,5 @@ source "https://rubygems.org"
 # To upgrade, run `bundle update`.
 
 gem "webrick"
+gem "minima"
 gem "github-pages", group: :jekyll_plugins
